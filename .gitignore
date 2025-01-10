@@ -1,0 +1,27 @@
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# Sensitive data
+secret-config.plist
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# CocoaPods
+Pods/
