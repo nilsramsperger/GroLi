@@ -7,8 +7,11 @@
 import Foundation
 @testable import GroLi
 
-struct ProductsRepositoryMock: ProductsRepository {
+class ProductsRepositoryMock: ProductsRepository {
+    var calls: Int = 0
+    
     func getAll() -> [GroLi.Product] {
+        self.calls += 1
         return [Product(id: UUID(), name: "test", rank: 0), Product(id: UUID(), name: "test2", rank: 1), Product(id: UUID(), name: "test3", rank: 2)]
     }
 }

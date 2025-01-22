@@ -12,7 +12,7 @@ struct ListProductsUseCaseTest {
     @Test("Listing the Products")
     func should_list_all_products_from_the_repo() async throws {
         // Arrange
-        let products: ProductsRepository = ProductsRepositoryMock()
+        let products = ProductsRepositoryMock()
         let sut: ListProductsUseCase = ListProductsUseCaseImpl(products: products)
         
         // Act
@@ -20,5 +20,6 @@ struct ListProductsUseCaseTest {
         
         // Assert
         #expect(actualProducts.count == 3)
+        #expect(products.calls == 1)
     }
 }
