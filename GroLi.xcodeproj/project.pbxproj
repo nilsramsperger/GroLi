@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01844DB92D4228FF00DBA3EE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 01844DB82D4228F800DBA3EE /* README.md */; };
 		01CED9382D314BEC00CECA7B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 01CED9372D314BDE00CECA7B /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01844DB82D4228F800DBA3EE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01CED9372D314BDE00CECA7B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		01DA09822D302485004FB15A /* GroLi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroLi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DA09992D302488004FB15A /* GroLiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroLiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 		01DA09792D302485004FB15A = {
 			isa = PBXGroup;
 			children = (
+				01844DB82D4228F800DBA3EE /* README.md */,
 				01CED9372D314BDE00CECA7B /* .gitignore */,
 				01DA09842D302485004FB15A /* GroLi */,
 				01DA099C2D302488004FB15A /* GroLiTests */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01844DB92D4228FF00DBA3EE /* README.md in Resources */,
 				01CED9382D314BEC00CECA7B /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
