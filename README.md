@@ -8,4 +8,5 @@ Smart Grocery List
   - [ ] Create UnitTests
 - [ ] Add a ShoppingListView
   - [ ] Display View in App as default View
+  - [ ] Create Factory to bootstrap the dep-tree
   - [ ] Create UITests
