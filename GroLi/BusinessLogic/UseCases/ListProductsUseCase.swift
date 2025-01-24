@@ -6,5 +6,5 @@
 //
 
 protocol ListProductsUseCase {
-    func listProducts() async throws -> [Product]
+    func listProducts() -> [Product]
 }

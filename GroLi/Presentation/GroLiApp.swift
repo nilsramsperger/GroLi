@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct GroLiApp: App {
-    let persistenceController = PersistenceController.shared
+    let shoppingListViewModel = ShoppingListViewModel(listProducts: ListProductsUseCaseImpl(products: ProductsInMemoryRepositoryImpl()))
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ShopingListView().environmentObject(shoppingListViewModel)
         }
+    }
+    
+    init() {
+        shoppingListViewModel.loadData()
     }
 }

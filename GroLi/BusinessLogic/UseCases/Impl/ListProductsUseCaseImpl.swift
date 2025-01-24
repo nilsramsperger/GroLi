@@ -14,7 +14,7 @@ struct ListProductsUseCaseImpl: ListProductsUseCase {
         self.products = products
     }
     
-    func listProducts() async throws -> [Product] {
-        return try await products.getAll()
+    func listProducts() -> [Product] {
+        return products.getAll()
     }
 }
