@@ -3,8 +3,8 @@ Smart Grocery List
 
 ## ToDo
 ### Read static in-memory list and display it
-- [ ] Change ListProductsUseCase to return the list in order by rank
-  - [ ] Write UnitTest for this
+- [x] Change ListProductsUseCase to return the list in order by rank
+  - [x] Write UnitTest for this
 - [x] Add a ProductsInMemoryRepository
 - [x] Add a ShoppingListViewModel
   - [ ] Create UnitTests
