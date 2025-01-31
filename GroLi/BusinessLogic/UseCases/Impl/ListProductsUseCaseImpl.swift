@@ -15,6 +15,6 @@ struct ListProductsUseCaseImpl: ListProductsUseCase {
     }
     
     func listProducts() -> [Product] {
-        return products.getAll()
+        return products.getAll().sorted { $0.rank < $1.rank }
     }
 }

@@ -12,6 +12,6 @@ class ProductsRepositoryMock: ProductsRepository {
     
     func getAll() -> [GroLi.Product] {
         self.calls += 1
-        return [Product(id: UUID(), name: "test", rank: 0), Product(id: UUID(), name: "test2", rank: 1), Product(id: UUID(), name: "test3", rank: 2)]
+        return [Product(id: UUID(), name: "test", rank: 0), Product(id: UUID(), name: "test2", rank: 2), Product(id: UUID(), name: "test3", rank: 1)]
     }
 }
