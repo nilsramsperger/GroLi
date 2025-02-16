@@ -7,14 +7,19 @@ Smart Grocery List
   - [x] Write UnitTest for this
 - [x] Add a ProductsInMemoryRepository
 - [x] Add a ShoppingListViewModel
-  - [ ] Create UnitTests
+  - [x] Create UnitTests
 - [x] Add a ShoppingListView
   - [x] Display View in App as default View
-  - [ ] Create Factory to bootstrap the dep-tree
+  - [x] Create Factory to bootstrap the dep-tree
   - [ ] Create UITests
+- [ ] Make all Tests run in CI
  
 ### Add products to the list
-- [ ] _tbd_
+- [ ] Add add() func to the repo
+- [ ] create and test AddProductUseCase
+- [ ] Add a addProduct() func to the ViewModel and test it
+- [ ] Add a plus button with functionality to the View
+- [ ] Create a UITest for the plus button 
 
 ### Remove products from the list
 - [ ] _tbd_
