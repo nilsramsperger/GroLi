@@ -9,7 +9,8 @@ import SwiftUI
 
 @main
 struct GroLiApp: App {
-    let shoppingListViewModel = ShoppingListViewModel(listProducts: ListProductsUseCaseImpl(products: ProductsInMemoryRepositoryImpl()))
+    let shoppingListViewModelFactory: ShoppingListViewModelFactory
+    let shoppingListViewModel: ShoppingListViewModel
 
     var body: some Scene {
         WindowGroup {
@@ -18,6 +19,8 @@ struct GroLiApp: App {
     }
     
     init() {
+        shoppingListViewModelFactory = ShoppingListViewModelFactoryImpl()
+        shoppingListViewModel = shoppingListViewModelFactory.create()
         shoppingListViewModel.loadData()
     }
 }
