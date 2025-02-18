@@ -11,11 +11,14 @@ struct ShopingListView: View {
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
-        Text("Test")
-        List {
+        VStack(alignment: .leading) {
             ForEach(viewModel.products) { product in
-                Text(product.name)
+                Text(product.name).padding()
             }
         }
     }
+}
+
+#Preview {
+    ShopingListView().environmentObject(ShoppingListViewModel(mockProducts: [Product(id: UUID(), name: "Bread", rank: 0), Product(id: UUID(), name: "Butter", rank: 1), Product(id: UUID(), name: "Jam", rank: 2)]))
 }
