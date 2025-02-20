@@ -11,7 +11,7 @@ class ProductsInMemoryRepositoryImpl: ProductsRepository {
     var procucts: [Product] = []
     
     init() {
-        self.procucts = [Product(id: UUID(), name: "P1", rank: 0), Product(id: UUID(), name: "P2", rank: 1), Product(id: UUID(), name: "P3", rank: 2)]
+        self.procucts = [Product(id: UUID(), name: "P1", rank: 0, checked: false), Product(id: UUID(), name: "P2", rank: 1, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
     }
     
     func getAll() -> [Product] {

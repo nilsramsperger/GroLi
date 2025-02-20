@@ -12,8 +12,11 @@ struct ShoppingListView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(viewModel.products) { product in
-                Text(product.name).padding()
+            ForEach($viewModel.products) { $product in
+                Toggle(isOn: $product.checked) {
+                    Text(product.name)
+                }
+                    .toggleStyle(CheckboxToggleStyle())
             }
         }
     }

@@ -11,4 +11,5 @@ struct Product: Identifiable {
     var id: UUID
     var name: String
     var rank: Int
+    var checked: Bool
 }

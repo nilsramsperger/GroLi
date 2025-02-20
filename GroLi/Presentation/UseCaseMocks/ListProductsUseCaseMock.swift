@@ -9,6 +9,6 @@ import Foundation
 
 struct ListProductsUseCaseMock: ListProductsUseCase {
     func listProducts() -> [Product] {
-        return [Product(id: UUID(), name: "Bread", rank: 0), Product(id: UUID(), name: "Butter", rank: 1), Product(id: UUID(), name: "Jam", rank: 2)]
+        return [Product(id: UUID(), name: "Bread", rank: 0, checked: false), Product(id: UUID(), name: "Butter", rank: 1, checked: true), Product(id: UUID(), name: "Jam", rank: 2, checked: false)]
     }
 }
