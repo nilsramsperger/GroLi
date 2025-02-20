@@ -8,7 +8,7 @@
 import Foundation
 
 class ShoppingListViewModel: ObservableObject {
-    let listProductsUseCase: ListProductsUseCase?
+    let listProductsUseCase: ListProductsUseCase
     
     @Published var products: [Product] = []
     
@@ -16,12 +16,7 @@ class ShoppingListViewModel: ObservableObject {
         listProductsUseCase = listProducts
     }
     
-    init(mockProducts: [Product]) {
-        listProductsUseCase = nil
-        products = mockProducts
-    }
-    
     func loadData() {
-        products = listProductsUseCase?.listProducts() ?? []
+        products = listProductsUseCase.listProducts()
     }
 }
