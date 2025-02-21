@@ -16,6 +16,7 @@ struct CheckboxToggleStyle: ToggleStyle {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square" : "square")
                     .foregroundColor(configuration.isOn ? .blue : .gray)
+                    .animation(.easeInOut(duration: 0.1), value: configuration.isOn)
                 configuration.label
             }
         }

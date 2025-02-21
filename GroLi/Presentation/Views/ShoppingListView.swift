@@ -12,13 +12,20 @@ struct ShoppingListView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
+                .font(.title)
+                .padding(.bottom, 10)
             ForEach($viewModel.products) { $product in
-                Toggle(isOn: $product.checked) {
+                HStack() {
+                    Toggle(isOn: $product.checked) {}
+                        .toggleStyle(CheckboxToggleStyle())
                     Text(product.name)
+                    Spacer()
                 }
-                    .toggleStyle(CheckboxToggleStyle())
+                .padding(.bottom, 0.25)
             }
-        }
+            Spacer()
+        }.padding()
     }
 }
 

@@ -1,0 +1,32 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add Item" : {
+
+    },
+    "Item at %@" : {
+
+    },
+    "Select an item" : {
+
+    },
+    "ShoppingListHeader" : {
+      "comment" : "Headline of the ShoppingList",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkaufsliste"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shopping List"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
