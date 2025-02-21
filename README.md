@@ -18,11 +18,19 @@ Smart Grocery List
 - [ ] Add add() func to the repo
 - [ ] create and test AddProductUseCase
 - [ ] Add a addProduct() func to the ViewModel and test it
-- [ ] Add a plus button with functionality to the View
+- [ ] Add a plus button with functionality for iOS to the View
 - [ ] Create a UITest for the plus button 
+- [ ] Add context menu with plus button for iPadOS and macOS to the View
+- [ ] Create a UITest for the context menu plus button 
 
 ### Remove products from the list
-- [ ] _tbd_
+- [ ] Add remove() func to the repo
+- [ ] create and test DemoveProductUseCase
+- [ ] Add a removeProduct() func to the ViewModel and test it
+- [ ] Add swipe left with remove button for iOS to the View
+- [ ] Create UITest for the swipe remove
+- [ ] Add context menu with remove button for  iPadOS and macOS to the View
+- [ ] Create UITest for the context menu remove
 
 ### Make the list sortable
 - [ ] _tbd_
