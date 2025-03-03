@@ -12,26 +12,42 @@ struct ShoppingListViewModelTest {
     @Test("Calling loadData")
     func should_call_list_data() {
         // Arrange
-        let useCase = ListProductsUseCaseMock()
-        let sut = ShoppingListViewModel(listProducts: useCase)
+        let listProducts = ListProductsUseCaseMock()
+        let addProduct = AddProductUseCaseMock()
+        let sut = ShoppingListViewModel(listProducts: listProducts, addProduct: addProduct)
         
         // Act
         sut.loadData()
         
         // Assert
-        #expect(useCase.calls == 1)
+        #expect(listProducts.calls == 1)
     }
     
     @Test("Calling loadData")
     func should_put_data_in_local_varable() {
         // Arrange
-        let useCase = ListProductsUseCaseMock()
-        let sut = ShoppingListViewModel(listProducts: useCase)
+        let listProducts = ListProductsUseCaseMock()
+        let addProduct = AddProductUseCaseMock()
+        let sut = ShoppingListViewModel(listProducts: listProducts, addProduct: addProduct)
         
         // Act
         sut.loadData()
         
         // Assert
         #expect(sut.products.count == 1)
+    }
+    
+    @Test("addProduct")
+    func should_call_add_product_use_case() {
+        // Arrange
+        let listProducts = ListProductsUseCaseMock()
+        let addProduct = AddProductUseCaseMock()
+        let sut = ShoppingListViewModel(listProducts: listProducts, addProduct: addProduct)
+        
+        // Act
+        sut.addProduct(name: "Test")
+        
+        // Assert
+        #expect(addProduct.calls == 1)
     }
 }

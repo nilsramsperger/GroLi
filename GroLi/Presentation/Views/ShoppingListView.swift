@@ -31,7 +31,7 @@ struct ShoppingListView: View {
 
 struct ShoppingListViewPreviewData: PreviewModifier {
     static func makeSharedContext() -> ShoppingListViewModel {
-        let viewModel = ShoppingListViewModel(listProducts: ListProductsUseCaseMock())
+        let viewModel = ShoppingListViewModel(listProducts: ListProductsUseCaseMock(), addProduct: AddProductUseCaseMock())
         viewModel.loadData()
         return viewModel
     }
