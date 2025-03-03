@@ -20,7 +20,7 @@ struct ListProductsUseCaseTest {
         
         // Assert
         #expect(actualProducts.count == 3)
-        #expect(products.calls == 1)
+        #expect(products.getAllCalls == 1)
     }
     
     @Test("Listing the Products")

@@ -17,4 +17,8 @@ class ProductsInMemoryRepositoryImpl: ProductsRepository {
     func getAll() -> [Product] {
         return self.procucts
     }
+    
+    func add(_ product: Product) {
+        self.procucts.append(product)
+    }
 }

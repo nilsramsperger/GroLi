@@ -15,8 +15,8 @@ Smart Grocery List
 - [ ] Make all Tests run in CI
  
 ### Add products to the list
-- [ ] Add add() func to the repo
-- [ ] create and test AddProductUseCase
+- [x] Add add() func to the repo
+- [x] create and test AddProductUseCase
 - [ ] Add a addProduct() func to the ViewModel and test it
 - [ ] Add a plus button with functionality for iOS to the View
 - [ ] Create a UITest for the plus button 
