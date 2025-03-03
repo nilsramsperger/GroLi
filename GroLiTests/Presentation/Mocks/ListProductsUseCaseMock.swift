@@ -13,6 +13,6 @@ class ListProductsUseCaseMock: ListProductsUseCase {
     
     func listProducts() -> [GroLi.Product] {
         self.calls += 1
-        return [Product(id: UUID(), name: "test", rank: 0)]
+        return [Product(id: UUID(), name: "test", rank: 0, checked: false)]
     }
 }
