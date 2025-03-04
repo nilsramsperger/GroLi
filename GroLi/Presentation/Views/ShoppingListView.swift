@@ -42,7 +42,7 @@ struct ShoppingListView: View {
                                         .background(Circle().fill(.green))
                                         .foregroundColor(.white)
                     }.sheet(isPresented: $showAddProductSheet) {
-                        AddProductSheet().presentationDetents([.fraction(0.2)])
+                        AddProductSheet()
                     }
                 }.padding()
             }.padding()
@@ -51,9 +51,12 @@ struct ShoppingListView: View {
 }
 
 struct AddProductSheet: View {
+    @EnvironmentObject private var viewModel: ShoppingListViewModel
+    
     @Environment(\.dismiss) private var dismiss
     
     @State private var productName: String = ""
+    @State private var contentHeight: CGFloat = 0
     
     @FocusState private var isTextFieldFocused: Bool
     
@@ -62,11 +65,25 @@ struct AddProductSheet: View {
             TextField("NewItem", text: $productName)
                 .padding()
                 .focused($isTextFieldFocused)
-        }.onAppear {
+                .textFieldStyle(.roundedBorder)
+        }
+        .onSubmit {
+            viewModel.addProduct(name: productName)
+            dismiss()
+        }
+        .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 isTextFieldFocused = true
             }
         }
+        .background(
+            GeometryReader { proxy in
+                Color.clear.onAppear {
+                    contentHeight = proxy.size.height
+                }
+            }
+        )
+        .presentationDetents([.height(contentHeight)])
     }
 }
 
