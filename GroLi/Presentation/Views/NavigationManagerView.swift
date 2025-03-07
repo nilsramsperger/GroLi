@@ -14,7 +14,11 @@ struct NavigationManagerView: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sideBarVisibility) {
-            Text("Shops", comment: "Headline of list of shops")
+            HStack() {
+                Text("Shops", comment: "Headline of list of shops")
+                Spacer()
+                Image(systemName: "chevron.down")
+            }.padding()
             List(selection: $selection) {
                 NavigationLink(value: "misc") {
                     Text("MiscListHeader", comment: "Navigation link to the miscellaneous list")
