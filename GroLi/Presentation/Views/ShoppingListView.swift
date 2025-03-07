@@ -8,45 +8,80 @@
 import SwiftUI
 
 struct ShoppingListView: View {
-    @EnvironmentObject private var viewModel: ShoppingListViewModel
-    
+    var body: some View {
+        #if os(iOS)
+        ShoppingListIOSView()
+        #else
+        ShoppingListMacOSView()
+        #endif
+    }
+}
+
+struct ShoppingListIOSView: View {
     @State private var showAddProductSheet: Bool = false
     
     var body: some View {
         ZStack() {
-            VStack(alignment: .leading) {
-                Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
-                    .font(.title)
-                    .padding(.bottom, 10)
-                ForEach($viewModel.products) { $product in
-                    HStack() {
-                        Toggle(isOn: $product.checked) {}
-                            .toggleStyle(CheckboxToggleStyle())
-                        Text(product.name)
-                        Spacer()
-                    }
-                    .padding(.bottom, 0.25)
-                }
-                Spacer()
-            }.padding()
+            ShoppingListMainView()
             VStack() {
                 Spacer()
                 HStack() {
                     Spacer()
                     Button(action: { showAddProductSheet = true }){
                         Image(systemName: "plus")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                        .padding()
-                                        .background(Circle().fill(.green))
-                                        .foregroundColor(.white)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .padding()
+                            .background(Circle().fill(.green))
+                            .foregroundColor(.white)
                     }.sheet(isPresented: $showAddProductSheet) {
                         AddProductSheet()
                     }
                 }.padding()
             }.padding()
         }
+    }
+}
+
+struct ShoppingListMacOSView: View {
+    @State private var showAddProductSheet: Bool = false
+    
+    var body: some View {
+        ShoppingListMainView()
+            .toolbar {
+                ToolbarItem() {
+                    Button(action: { showAddProductSheet = true }) {
+                        Image(systemName: "plus")
+                    }
+                    .keyboardShortcut("n")
+                    .sheet(isPresented: $showAddProductSheet) {
+                        AddProductSheet()
+                    }
+                }
+            }
+    }
+}
+
+struct ShoppingListMainView: View {
+    @EnvironmentObject private var viewModel: ShoppingListViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
+                .font(.title)
+                .padding(.bottom, 10)
+            ForEach($viewModel.products) { $product in
+                HStack() {
+                    Toggle(isOn: $product.checked) {}
+                        .toggleStyle(CheckboxToggleStyle())
+                    Text(product.name)
+                    Spacer()
+                }
+                .padding(.bottom, 0.25)
+            }
+            Spacer()
+        }.padding()
     }
 }
 

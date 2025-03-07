@@ -18,9 +18,9 @@ Smart Grocery List
 - [x] Add add() func to the repo
 - [x] create and test AddProductUseCase
 - [x] Add a addProduct() func to the ViewModel and test it
-- [ ] Add a plus button with functionality for iOS to the View
+- [x] Add a plus button with functionality for iOS to the View
 - [ ] Create a UITest for the plus button 
-- [ ] Add context menu with plus button for iPadOS and macOS to the View
+- [x] Add context menu with plus button for iPadOS and macOS to the View
 - [ ] Create a UITest for the context menu plus button 
 
 ### Remove products from the list

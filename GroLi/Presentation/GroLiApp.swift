@@ -14,7 +14,7 @@ struct GroLiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ShoppingListView().environmentObject(shoppingListViewModel)
+            NavigationManagerView().environmentObject(shoppingListViewModel)
         }
     }
     
