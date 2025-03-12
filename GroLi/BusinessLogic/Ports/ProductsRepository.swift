@@ -10,4 +10,6 @@ import Foundation
 protocol ProductsRepository {
     func getAll() -> [Product];
     func add(_ product: Product) -> Void;
+    func remove(_ product: Product) -> Void;
+    func update(_ product: Product) -> Void;
 }

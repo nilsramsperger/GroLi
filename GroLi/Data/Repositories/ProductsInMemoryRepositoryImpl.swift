@@ -8,17 +8,26 @@
 import Foundation
 
 class ProductsInMemoryRepositoryImpl: ProductsRepository {
-    var procucts: [Product] = []
+    var products: [Product] = []
     
     init() {
-        self.procucts = [Product(id: UUID(), name: "P1", rank: 0, checked: false), Product(id: UUID(), name: "P2", rank: 1, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
+        products = [Product(id: UUID(), name: "P1", rank: 0, checked: false), Product(id: UUID(), name: "P2", rank: 1, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
     }
     
     func getAll() -> [Product] {
-        return self.procucts
+        return products
     }
     
     func add(_ product: Product) {
-        self.procucts.append(product)
+        products.append(product)
+    }
+    
+    func remove(_ product: Product) {
+        products = products.filter { $0.id != product.id }
+    }
+    
+    func update(_ product: Product) {
+        remove(product)
+        add(product)
     }
 }
