@@ -10,12 +10,16 @@ import Foundation
 class ProductsInMemoryRepositoryImpl: ProductsRepository {
     var products: [Product] = []
     
-    init() {
-        products = [Product(id: UUID(), name: "P1", rank: 0, checked: false), Product(id: UUID(), name: "P2", rank: 1, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
+    init(withProducts products: [Product]) {
+        self.products = products
     }
     
     func getAll() -> [Product] {
         return products
+    }
+    
+    func get(byId id: UUID) -> Product? {
+        return products.first(where: { $0.id == id })
     }
     
     func add(_ product: Product) {

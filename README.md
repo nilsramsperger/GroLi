@@ -24,8 +24,8 @@ Smart Grocery List
 - [ ] Create a UITest for the context menu plus button 
 
 ### Remove products from the list
-- [ ] Add remove() func to the repo
-- [ ] create and test DemoveProductUseCase
+- [x] Add remove() func to the repo
+- [x] create and test removeProductUseCase
 - [ ] Add a removeProduct() func to the ViewModel and test it
 - [ ] Add swipe left with remove button for iOS to the View
 - [ ] Create UITest for the swipe remove
@@ -37,3 +37,6 @@ Smart Grocery List
 
 ### Switch to CoreData and iCloudKit for storage
 - [ ] _tbd_
+
+## Questions
+- Can ViewModel tests be omitted, if UITests are present?

@@ -6,35 +6,37 @@
 //
 
 import Testing
+import Foundation
 @testable import GroLi
 
 struct ListProductsUseCaseTest {
-    @Test("Listing the Products")
-    func should_list_all_products_from_the_repo() {
+    @Test()
+    func test_listProducts_should_list_all_products_from_the_repo() {
         // Arrange
-        let products = ProductsRepositoryMock()
-        let sut: ListProductsUseCase = ListProductsUseCaseImpl(products: products)
+        let products = [Product(id: UUID(), name: "P1", rank: 0, checked: false), Product(id: UUID(), name: "P2", rank: 1, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: products)
+        let sut: ListProductsUseCase = ListProductsUseCaseImpl(products: repo)
         
         // Act
         let actualProducts: [Product] = sut.listProducts()
         
         // Assert
         #expect(actualProducts.count == 3)
-        #expect(products.getAllCalls == 1)
     }
     
-    @Test("Listing the Products")
-    func should_return_the_products_ordered_by_rank() {
+    @Test()
+    func test_listProducts_should_return_the_products_ordered_by_rank() {
         // Arrange
-        let products = ProductsRepositoryMock()
-        let sut: ListProductsUseCase = ListProductsUseCaseImpl(products: products)
+        let products = [Product(id: UUID(), name: "P1", rank: 1, checked: false), Product(id: UUID(), name: "P2", rank: 0, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: products)
+        let sut: ListProductsUseCase = ListProductsUseCaseImpl(products: repo)
         
         // Act
         let actualProducts: [Product] = sut.listProducts()
         
         // Assert
-        #expect(actualProducts[0].name == "test")
-        #expect(actualProducts[1].name == "test3")
-        #expect(actualProducts[2].name == "test2")
+        #expect(actualProducts[0].name == "P2")
+        #expect(actualProducts[1].name == "P1")
+        #expect(actualProducts[2].name == "P3")
     }
 }

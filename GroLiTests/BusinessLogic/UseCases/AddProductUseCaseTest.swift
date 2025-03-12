@@ -6,36 +6,38 @@
 //
 
 import Testing
+import Foundation
 @testable import GroLi
 
 struct AddProductUseCaseTest {
-    @Test("Adding a product")
-    func should_call_the_add_method_of_the_repository() {
+    @Test()
+    func test_addProduct_should_add_one_product_to_the_repo() {
         // Arrange
-        let products = ProductsRepositoryMock()
-        let sut: AddProductUseCase = AddProductUseCaseImpl(products: products)
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: [])
+        let sut: AddProductUseCase = AddProductUseCaseImpl(products: repo)
         
         // Act
         sut.addProduct(name: "Test")
         
         // Assert
-        #expect(products.addCalls == 1)
+        #expect(repo.getAll().count == 1)
     }
     
-    @Test("Adding a product")
-    func should_create_a_new_product_with_correct_values() {
+    @Test()
+    func test_addProduct_should_create_a_new_product_with_correct_values() {
         // Arrange
-        let products = ProductsRepositoryMock()
-        let sut: AddProductUseCase = AddProductUseCaseImpl(products: products)
+        let products = [Product(id: UUID(), name: "P1", rank: 1, checked: false), Product(id: UUID(), name: "P2", rank: 0, checked: true), Product(id: UUID(), name: "P3", rank: 2, checked: false)]
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: products)
+        let sut: AddProductUseCase = AddProductUseCaseImpl(products: repo)
         
         // Act
         sut.addProduct(name: "Test")
         
         // Assert
-        #expect(products.lastAddedProduct != nil)
-        #expect(products.lastAddedProduct!.id.uuidString.count == 36)
-        #expect(products.lastAddedProduct!.name == "Test")
-        #expect(products.lastAddedProduct!.checked == false)
-        #expect(products.lastAddedProduct!.rank == 3)
+        #expect(repo.getAll()[3] != nil)
+        #expect(repo.getAll()[3].id.uuidString.count == 36)
+        #expect(repo.getAll()[3].name == "Test")
+        #expect(repo.getAll()[3].checked == false)
+        #expect(repo.getAll()[3].rank == 3)
     }
 }
