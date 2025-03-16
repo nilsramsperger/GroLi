@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Identifiable {
+struct Product: Identifiable, Hashable {
     var id: UUID
     var name: String
     var rank: Int

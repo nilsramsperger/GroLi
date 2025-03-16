@@ -19,10 +19,30 @@ struct ShoppingListView: View {
 
 struct ShoppingListIOSView: View {
     @State private var showAddProductSheet: Bool = false
+    @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
         ZStack() {
-            ShoppingListMainView()
+            VStack(alignment: .leading) {
+                Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
+                    .font(.title)
+                    .padding(.bottom, 10)
+                List {
+                    ForEach($viewModel.products) { $product in
+                        HStack() {
+                            Toggle(isOn: $product.checked) {}
+                                .toggleStyle(CheckboxToggleStyle())
+                            Text(product.name)
+                            Spacer()
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    }
+                    .onDelete(perform: viewModel.deleteItems)
+                }
+                .listStyle(.plain)
+                Spacer()
+            }.padding()
             VStack() {
                 Spacer()
                 HStack() {
@@ -46,24 +66,6 @@ struct ShoppingListIOSView: View {
 
 struct ShoppingListMacOSView: View {
     @State private var showAddProductSheet: Bool = false
-    
-    var body: some View {
-        ShoppingListMainView()
-            .toolbar {
-                ToolbarItem() {
-                    Button(action: { showAddProductSheet = true }) {
-                        Image(systemName: "plus")
-                    }
-                    .keyboardShortcut("n")
-                    .sheet(isPresented: $showAddProductSheet) {
-                        AddProductSheet()
-                    }
-                }
-            }
-    }
-}
-
-struct ShoppingListMainView: View {
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
@@ -82,6 +84,17 @@ struct ShoppingListMainView: View {
             }
             Spacer()
         }.padding()
+            .toolbar {
+                ToolbarItem() {
+                    Button(action: { showAddProductSheet = true }) {
+                        Image(systemName: "plus")
+                    }
+                    .keyboardShortcut("n")
+                    .sheet(isPresented: $showAddProductSheet) {
+                        AddProductSheet()
+                    }
+                }
+            }
     }
 }
 

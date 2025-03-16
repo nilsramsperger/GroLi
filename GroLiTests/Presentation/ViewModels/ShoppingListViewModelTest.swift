@@ -49,13 +49,14 @@ struct ShoppingListViewModelTest {
     }
     
     @Test()
-    func test_removeProduct_should_call_remove_product_use_case() {
+    func test_deleteItems_should_call_remove_product_use_case() {
         // Arrange
         let removeProduct = RemoveProductUseCaseMock()
         let sut = ShoppingListViewModel(listProducts: ListProductsUseCaseMock(), addProduct: AddProductUseCaseMock(), removeProduct: removeProduct)
+        sut.loadData()
         
         // Act
-        sut.removeProduct(withId: UUID())
+        sut.deleteItems(at: [0])
         
         // Assert
         #expect(removeProduct.calls == 1)
