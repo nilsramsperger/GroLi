@@ -26,7 +26,7 @@ Smart Grocery List
 ### Remove products from the list
 - [x] Add remove() func to the repo
 - [x] create and test removeProductUseCase
-- [ ] Add a removeProduct() func to the ViewModel and test it
+- [x] Add a removeProduct() func to the ViewModel and test it
 - [ ] Add swipe left with remove button for iOS to the View
 - [ ] Create UITest for the swipe remove
 - [ ] Add context menu with remove button for  iPadOS and macOS to the View
