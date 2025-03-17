@@ -110,7 +110,7 @@ struct AddProductSheet: View {
     
     var body: some View {
         VStack() {
-            TextField("NewItem", text: $productName)
+            TextField("WhatToBuy", text: $productName)
                 .padding()
                 .focused($isTextFieldFocused)
                 .textFieldStyle(.roundedBorder)

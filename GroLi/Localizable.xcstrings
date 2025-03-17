@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add Item" : {
-
-    },
-    "Item at %@" : {
-
-    },
     "MiscListHeader" : {
       "comment" : "Headline of the list for items that belong to no shop",
       "extractionState" : "manual",
@@ -32,7 +26,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Zutat"
+            "value" : "Neuer Eintrag"
           }
         },
         "en" : {
@@ -42,9 +36,6 @@
           }
         }
       }
-    },
-    "Select an item" : {
-
     },
     "ShoppingListHeader" : {
       "comment" : "Headline of the ShoppingList",
@@ -82,7 +73,32 @@
       }
     },
     "Unknown" : {
-
+      "comment" : "Placeholder for dead navigation links",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannt"
+          }
+        }
+      }
+    },
+    "WhatToBuy" : {
+      "comment" : "Placeholder for a new shopping list entry's name",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was soll auf die Liste gesetzt werden?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What shall be put on the list?"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
