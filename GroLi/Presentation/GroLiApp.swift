@@ -21,6 +21,6 @@ struct GroLiApp: App {
     init() {
         shoppingListViewModelFactory = ShoppingListViewModelFactoryImpl()
         shoppingListViewModel = shoppingListViewModelFactory.create()
-        shoppingListViewModel.loadData()
+        shoppingListViewModel.loadItems()
     }
 }

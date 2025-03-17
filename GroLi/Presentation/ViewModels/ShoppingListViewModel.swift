@@ -20,13 +20,13 @@ class ShoppingListViewModel: ObservableObject {
         removeProductUseCase = removeProduct
     }
     
-    func loadData() {
+    func loadItems() {
         products = listProductsUseCase.listProducts()
     }
     
-    func addProduct(name: String) {
+    func addItem(name: String) {
         addProductUseCase.addProduct(name: name)
-        loadData()
+        loadItems()
     }
     
     func deleteItems(at indexSet: IndexSet) {
@@ -35,6 +35,6 @@ class ShoppingListViewModel: ObservableObject {
                 removeProductUseCase.removeProduct(withId: idToDelete)
             }
         }
-        loadData()
+        loadItems()
     }
 }

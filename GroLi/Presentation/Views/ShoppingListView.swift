@@ -116,7 +116,7 @@ struct AddProductSheet: View {
                 .textFieldStyle(.roundedBorder)
         }
         .onSubmit {
-            viewModel.addProduct(name: productName)
+            viewModel.addItem(name: productName)
             dismiss()
         }
         .onAppear {
@@ -139,7 +139,7 @@ struct ShoppingListViewPreviewData: PreviewModifier {
     static func makeSharedContext() -> ShoppingListViewModel {
         let factory: ShoppingListViewModelFactory = ShoppingListPreViewModelFactoryImpl()
         let viewModel: ShoppingListViewModel = factory.create()
-        viewModel.loadData()
+        viewModel.loadItems()
         return viewModel
     }
     

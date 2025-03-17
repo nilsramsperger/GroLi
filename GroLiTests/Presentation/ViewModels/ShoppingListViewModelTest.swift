@@ -11,38 +11,38 @@ import Foundation
 
 struct ShoppingListViewModelTest {
     @Test()
-    func test_loadData_should_call_list_data() {
+    func test_loadItems_should_call_list_data() {
         // Arrange
         let listProducts = ListProductsUseCaseMock()
         let sut = ShoppingListViewModel(listProducts: listProducts, addProduct: AddProductUseCaseMock(), removeProduct: RemoveProductUseCaseMock())
         
         // Act
-        sut.loadData()
+        sut.loadItems()
         
         // Assert
         #expect(listProducts.calls == 1)
     }
     
     @Test()
-    func test_loadData_should_put_data_in_local_varable() {
+    func test_loadItems_should_put_data_in_local_varable() {
         // Arrange
         let sut = ShoppingListViewModel(listProducts: ListProductsUseCaseMock(), addProduct: AddProductUseCaseMock(), removeProduct: RemoveProductUseCaseMock())
         
         // Act
-        sut.loadData()
+        sut.loadItems()
         
         // Assert
         #expect(sut.products.count == 1)
     }
     
     @Test()
-    func test_addProduct_should_call_add_product_use_case() {
+    func test_addItem_should_call_add_product_use_case() {
         // Arrange
         let addProduct = AddProductUseCaseMock()
         let sut = ShoppingListViewModel(listProducts: ListProductsUseCaseMock(), addProduct: addProduct, removeProduct: RemoveProductUseCaseMock())
         
         // Act
-        sut.addProduct(name: "Test")
+        sut.addItem(name: "Test")
         
         // Assert
         #expect(addProduct.calls == 1)
@@ -53,7 +53,7 @@ struct ShoppingListViewModelTest {
         // Arrange
         let removeProduct = RemoveProductUseCaseMock()
         let sut = ShoppingListViewModel(listProducts: ListProductsUseCaseMock(), addProduct: AddProductUseCaseMock(), removeProduct: removeProduct)
-        sut.loadData()
+        sut.loadItems()
         
         // Act
         sut.deleteItems(at: [0])
