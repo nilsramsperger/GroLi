@@ -66,21 +66,41 @@ struct ShoppingListIOSView: View {
 
 struct ShoppingListMacOSView: View {
     @State private var showAddProductSheet: Bool = false
+    @State private var hoverIndex: Int? = nil
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
-                .font(.title)
-                .padding(.bottom, 10)
-            ForEach($viewModel.products) { $product in
+        VStack(alignment: .leading, spacing: 0) {
+            HStack() {
+                Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
+                    .font(.title)
+                    .padding(.bottom, 10)
+                Spacer()
+            }
+            ForEach(viewModel.products.indices, id: \.self) { index in
                 HStack() {
-                    Toggle(isOn: $product.checked) {}
+                    Toggle(isOn: $viewModel.products[index].checked) {}
                         .toggleStyle(CheckboxToggleStyle())
-                    Text(product.name)
+                        .padding(.leading, 5)
+                        .padding(.vertical, 5)
+                    Text(viewModel.products[index].name)
                     Spacer()
+                    if(hoverIndex == index) {
+                        Button(action: { viewModel.deleteItems(at: [index])}) {
+                            Image(systemName: "trash")
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.trailing, 5)
+                    }
                 }
-                .padding(.bottom, 0.25)
+                .cornerRadius(8)
+                .onHover {
+                    hovering in hoverIndex = hovering ? index : nil
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(hoverIndex == index ? Color.gray.opacity(0.3) : Color.clear)
+                )
             }
             Spacer()
         }.padding()

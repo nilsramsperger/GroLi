@@ -33,6 +33,7 @@ class ShoppingListViewModel: ObservableObject {
         for index in indexSet {
             if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
                 removeProductUseCase.removeProduct(withId: idToDelete)
+                products = products.filter { $0.id != idToDelete}
             }
         }
         loadItems()
