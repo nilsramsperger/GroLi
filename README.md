@@ -30,14 +30,16 @@ Smart Grocery List
 - [ ] Add a test for mutliple deletes on deleteItems
 - [x] Add swipe left with remove button for iOS to the View
 - [ ] Create UITest for the swipe remove
-- [ ] Add context menu with remove button for  iPadOS and macOS to the View
+- [x] Add context menu with remove button for  iPadOS and macOS to the View
 - [ ] Create UITest for the context menu remove
 
 ### Make the list sortable
 - [ ] _tbd_
 
 ### Switch to CoreData and iCloudKit for storage
-- [ ] _tbd_
+- [ ] Implement a CoreData based repository
+- [ ] Integrate iCloud private database
+- [ ] Integrate iCloud shared database
 
 ## Questions
 - Can ViewModel tests be omitted, if UITests are present?
