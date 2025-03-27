@@ -34,12 +34,39 @@ Smart Grocery List
 - [ ] Create UITest for the context menu remove
 
 ### Make the list sortable
-- [ ] _tbd_
+- [x] Create a ReorderProductsUseCase
+  - reorder(by ids: [UUID])
+  - write a rest
+- [x] Add a reorderItems(items: [Product]) Method to the ShoppingListViewModel
+- [x] Add dragndrop to macOS View
+- [ ] Add dragndrop to iOS View
+  - [ ] Implement Swipe to delete without List
+  - [ ] Set item background for larger drag tap area
+- [ ] Add UITest for sorting
+  
+### Persist item checkbox
+- [ ] Create ToggleProductCheckedUseCase
+  - test it
+- [ ] Listen to change of checkbox and trigger usecase
+- [ ] Add UITest for checking
+
+### Security etc.
+- [ ] Add Validation for product name input
 
 ### Switch to CoreData and iCloudKit for storage
 - [ ] Implement a CoreData based repository
+  - Intgrate shema version fields into each record
 - [ ] Integrate iCloud private database
 - [ ] Integrate iCloud shared database
 
+### Misc
+- [ ] Add app icon
+- [ ] Add schema update logic
+
 ## Questions
 - Can ViewModel tests be omitted, if UITests are present?
+
+## Milestones
+### Milestone 1: Create a shared editable list 
+### Milestone 2: List of shops with individual shopping lists
+### _tbd_

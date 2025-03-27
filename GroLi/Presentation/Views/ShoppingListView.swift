@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ShoppingListView: View {
     var body: some View {
@@ -19,6 +20,8 @@ struct ShoppingListView: View {
 
 struct ShoppingListIOSView: View {
     @State private var showAddProductSheet: Bool = false
+    @State private var dragging: Product?
+    
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
@@ -37,6 +40,11 @@ struct ShoppingListIOSView: View {
                         }
                         .listRowSeparator(.hidden)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .onDrag {
+                            dragging = product
+                            return NSItemProvider(object: product.id.uuidString as NSString)
+                        }
+                        .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: product, draggedItem: $dragging, items: $viewModel.products, handleReorder: viewModel.reorderItems))
                     }
                     .onDelete(perform: viewModel.deleteItems)
                 }
@@ -67,6 +75,8 @@ struct ShoppingListIOSView: View {
 struct ShoppingListMacOSView: View {
     @State private var showAddProductSheet: Bool = false
     @State private var hoverIndex: Int? = nil
+    @State private var dragging: Product?
+    
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
@@ -101,6 +111,11 @@ struct ShoppingListMacOSView: View {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(hoverIndex == index ? Color.gray.opacity(0.3) : Color.clear)
                 )
+                .onDrag {
+                    dragging = viewModel.products[index]
+                    return NSItemProvider(object: viewModel.products[index].id.uuidString as NSString)
+                }
+                .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: viewModel.products[index], draggedItem: $dragging, items: $viewModel.products, handleReorder: viewModel.reorderItems))
             }
             Spacer()
         }.padding()
@@ -115,6 +130,34 @@ struct ShoppingListMacOSView: View {
                     }
                 }
             }
+    }
+}
+
+struct DragRelocateDelegate: DropDelegate {
+    let item: Product
+    @Binding var draggedItem: Product?
+    @Binding var items: [Product]
+    let handleReorder: () -> Void
+    
+    func dropEntered(info: DropInfo) {
+        if item != draggedItem {
+            let from = items.firstIndex(of: draggedItem!)!
+            let to = items.firstIndex(of: item)!
+            if items[to].id != draggedItem!.id {
+                items.move(fromOffsets: IndexSet(integer: from),
+                    toOffset: to > from ? to + 1 : to)
+            }
+        }
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        return DropProposal(operation: .move)
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        draggedItem = nil
+        handleReorder()
+        return true
     }
 }
 

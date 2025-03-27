@@ -13,6 +13,7 @@ struct ShoppingListPreViewModelFactoryImpl: ShoppingListViewModelFactory {
         let listProducts: ListProductsUseCase = ListProductsUseCaseImpl(products: products)
         let addProduct: AddProductUseCase = AddProductUseCaseImpl(products: products)
         let removeProduct: RemoveProductUseCase = RemoveProductUseCaseImpl(products: products)
-        return ShoppingListViewModel(listProducts: listProducts, addProduct: addProduct, removeProduct: removeProduct)
+        let reorderProducts: ReorderProductsUseCase = ReorderProductsUseCaseImpl(productsRepository: products)
+        return ShoppingListViewModel(listProducts: listProducts, addProduct: addProduct, removeProduct: removeProduct, reorderProducts: reorderProducts)
     }
 }

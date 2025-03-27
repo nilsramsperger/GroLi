@@ -11,13 +11,15 @@ class ShoppingListViewModel: ObservableObject {
     let listProductsUseCase: ListProductsUseCase
     let addProductUseCase: AddProductUseCase
     let removeProductUseCase: RemoveProductUseCase
+    let reorderProductsUseCase: ReorderProductsUseCase
     
     @Published var products: [Product] = []
     
-    init(listProducts: ListProductsUseCase, addProduct: AddProductUseCase, removeProduct: RemoveProductUseCase) {
+    init(listProducts: ListProductsUseCase, addProduct: AddProductUseCase, removeProduct: RemoveProductUseCase, reorderProducts: ReorderProductsUseCase) {
         listProductsUseCase = listProducts
         addProductUseCase = addProduct
         removeProductUseCase = removeProduct
+        reorderProductsUseCase = reorderProducts
     }
     
     func loadItems() {
@@ -33,9 +35,13 @@ class ShoppingListViewModel: ObservableObject {
         for index in indexSet {
             if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
                 removeProductUseCase.removeProduct(withId: idToDelete)
-                products = products.filter { $0.id != idToDelete}
             }
         }
+        loadItems()
+    }
+    
+    func reorderItems() {
+        reorderProductsUseCase.reorderProducts(byIds: products.map { $0.id })
         loadItems()
     }
 }
