@@ -22,6 +22,8 @@ struct ShoppingListIOSView: View {
     @State private var showAddProductSheet: Bool = false
     @State private var dragging: Product?
     
+    @State private var swipedIndex: Int? = nil
+    
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
@@ -30,25 +32,14 @@ struct ShoppingListIOSView: View {
                 Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
                     .font(.title)
                     .padding(.bottom, 10)
-                List {
-                    ForEach($viewModel.products) { $product in
-                        HStack() {
-                            Toggle(isOn: $product.checked) {}
-                                .toggleStyle(CheckboxToggleStyle())
-                            Text(product.name)
-                            Spacer()
-                        }
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        .onDrag {
-                            dragging = product
-                            return NSItemProvider(object: product.id.uuidString as NSString)
-                        }
-                        .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: product, draggedItem: $dragging, items: $viewModel.products, handleReorder: viewModel.reorderItems))
+                ForEach(viewModel.products.indices, id: \.self) { index in
+                    ProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index)
+                    .onDrag {
+                        dragging = viewModel.products[index]
+                        return NSItemProvider(object: viewModel.products[index].id.uuidString as NSString)
                     }
-                    .onDelete(perform: viewModel.deleteItems)
+                    .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: viewModel.products[index], draggedItem: $dragging, items: $viewModel.products, handleReorder: viewModel.reorderItems))
                 }
-                .listStyle(.plain)
                 Spacer()
             }.padding()
             VStack() {
