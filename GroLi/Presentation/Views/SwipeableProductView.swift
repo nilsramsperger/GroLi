@@ -65,6 +65,7 @@ struct SwipeableProductView: View {
     }
 }
 
+#if os(iOS)
 #Preview {
     @Previewable @State var product = Product(id: UUID(), name: "P1", rank: 0, checked: false)
     @Previewable @State var product2 = Product(id: UUID(), name: "P2", rank: 1, checked: false)
@@ -77,3 +78,4 @@ struct SwipeableProductView: View {
     }
     .padding()
 }
+#endif

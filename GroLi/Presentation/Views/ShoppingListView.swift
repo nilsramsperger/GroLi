@@ -27,10 +27,13 @@ struct ShoppingListIOSView: View {
     
     var body: some View {
         ZStack() {
-            VStack(alignment: .leading) {
-                Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
-                    .font(.title)
-                    .padding(.bottom, 10)
+            VStack() {
+                HStack() {
+                    Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
+                        .font(.title)
+                        .padding(.bottom, 10)
+                    Spacer()
+                }
                 ForEach(viewModel.products.indices, id: \.self) { index in
                     SwipeableProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index) { index in
                         viewModel.deleteItem(at: index)
@@ -73,7 +76,7 @@ struct ShoppingListMacOSView: View {
     @EnvironmentObject private var viewModel: ShoppingListViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(spacing: 0) {
             HStack() {
                 Text("ShoppingListHeader", comment: "Headline of the ShoppingList")
                     .font(.title)
@@ -81,29 +84,9 @@ struct ShoppingListMacOSView: View {
                 Spacer()
             }
             ForEach(viewModel.products.indices, id: \.self) { index in
-                HStack() {
-                    Toggle(isOn: $viewModel.products[index].checked) {}
-                        .toggleStyle(CheckboxToggleStyle())
-                        .padding(.leading, 5)
-                        .padding(.vertical, 5)
-                    Text(viewModel.products[index].name)
-                    Spacer()
-                    if(hoverIndex == index) {
-                        Button(action: { viewModel.deleteItem(at: index)}) {
-                            Image(systemName: "trash")
-                        }
-                        .buttonStyle(.plain)
-                        .padding(.trailing, 5)
-                    }
+                ProductView(product: $viewModel.products[index], index: index) { index in
+                    viewModel.deleteItem(at: index)
                 }
-                .cornerRadius(8)
-                .onHover {
-                    hovering in hoverIndex = hovering ? index : nil
-                }
-                .background(
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(hoverIndex == index ? Color.gray.opacity(0.3) : Color.clear)
-                )
                 .onDrag {
                     dragging = viewModel.products[index]
                     return NSItemProvider(object: viewModel.products[index].id.uuidString as NSString)
