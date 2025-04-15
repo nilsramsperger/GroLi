@@ -34,7 +34,6 @@ struct AddProductUseCaseTest {
         sut.addProduct(name: "Test")
         
         // Assert
-        #expect(repo.getAll()[3] != nil)
         #expect(repo.getAll()[3].id.uuidString.count == 36)
         #expect(repo.getAll()[3].name == "Test")
         #expect(repo.getAll()[3].checked == false)
