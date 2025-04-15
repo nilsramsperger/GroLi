@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProductView: View {
+struct SwipeableProductView: View {
     @Binding var product: Product
     @Binding var swipedIndex: Int?
     
@@ -71,8 +71,8 @@ struct ProductView: View {
     @Previewable @State var swipedIndex: Int? = nil
     
     VStack() {
-        ProductView(product: $product, swipedIndex: $swipedIndex, index: 0) {index in }
-        ProductView(product: $product2, swipedIndex: $swipedIndex, index: 1) {index in }
+        SwipeableProductView(product: $product, swipedIndex: $swipedIndex, index: 0) {index in }
+        SwipeableProductView(product: $product2, swipedIndex: $swipedIndex, index: 1) {index in }
         Spacer()
     }
     .padding()

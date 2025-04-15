@@ -32,7 +32,7 @@ struct ShoppingListIOSView: View {
                     .font(.title)
                     .padding(.bottom, 10)
                 ForEach(viewModel.products.indices, id: \.self) { index in
-                    ProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index) { index in
+                    SwipeableProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index) { index in
                         viewModel.deleteItem(at: index)
                         swipedIndex = nil
                     }
