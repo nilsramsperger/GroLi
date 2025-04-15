@@ -31,11 +31,9 @@ class ShoppingListViewModel: ObservableObject {
         loadItems()
     }
     
-    func deleteItems(at indexSet: IndexSet) {
-        for index in indexSet {
-            if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
-                removeProductUseCase.removeProduct(withId: idToDelete)
-            }
+    func deleteItem(at index: Int) {
+        if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
+            removeProductUseCase.removeProduct(withId: idToDelete)
         }
         loadItems()
     }

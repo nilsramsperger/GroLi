@@ -21,7 +21,6 @@ struct ShoppingListView: View {
 struct ShoppingListIOSView: View {
     @State private var showAddProductSheet: Bool = false
     @State private var dragging: Product?
-    
     @State private var swipedIndex: Int? = nil
     
     @EnvironmentObject private var viewModel: ShoppingListViewModel
@@ -33,7 +32,10 @@ struct ShoppingListIOSView: View {
                     .font(.title)
                     .padding(.bottom, 10)
                 ForEach(viewModel.products.indices, id: \.self) { index in
-                    ProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index)
+                    ProductView(product: $viewModel.products[index], swipedIndex: $swipedIndex, index: index) { index in
+                        viewModel.deleteItem(at: index)
+                        swipedIndex = nil
+                    }
                     .onDrag {
                         dragging = viewModel.products[index]
                         return NSItemProvider(object: viewModel.products[index].id.uuidString as NSString)
@@ -87,7 +89,7 @@ struct ShoppingListMacOSView: View {
                     Text(viewModel.products[index].name)
                     Spacer()
                     if(hoverIndex == index) {
-                        Button(action: { viewModel.deleteItems(at: [index])}) {
+                        Button(action: { viewModel.deleteItem(at: index)}) {
                             Image(systemName: "trash")
                         }
                         .buttonStyle(.plain)

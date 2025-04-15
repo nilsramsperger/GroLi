@@ -12,6 +12,7 @@ struct ProductView: View {
     @Binding var swipedIndex: Int?
     
     var index: Int
+    var onDelete: (_ index: Int) -> Void
     
     @State private var offsetX: CGFloat = 0
     
@@ -19,7 +20,7 @@ struct ProductView: View {
         ZStack() {
             HStack() {
                 Spacer()
-                Button(action: {}) {
+                Button(action: { onDelete(index) }) {
                     Image(systemName: "trash")
                         .padding()
                         
@@ -70,8 +71,8 @@ struct ProductView: View {
     @Previewable @State var swipedIndex: Int? = nil
     
     VStack() {
-        ProductView(product: $product, swipedIndex: $swipedIndex, index: 0)
-        ProductView(product: $product2, swipedIndex: $swipedIndex, index: 1)
+        ProductView(product: $product, swipedIndex: $swipedIndex, index: 0) {index in }
+        ProductView(product: $product2, swipedIndex: $swipedIndex, index: 1) {index in }
         Spacer()
     }
     .padding()
