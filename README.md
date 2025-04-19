@@ -70,10 +70,13 @@ Smart Grocery List
   - [ ] Add UITest for checking
 - [ ] Make all Tests run in CI
 
-## Questions
-- Can ViewModel tests be omitted, if UITests are present?
-
 ## Milestones
-### Milestone 1: Create a shared editable list 
-### Milestone 2: List of shops with individual shopping lists
-### _tbd_
+- Milestone 1: Create a shared editable list 
+- Milestone 2: List of shops with individual shopping lists
+- _tbd_
+
+## Test Strategy
+- The business logic should be covered by unit tests
+- Integration tests should be spanning from ViewModels to in memory storage
+- UI tests should be created for the main user interaction paths
+
