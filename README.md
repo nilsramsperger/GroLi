@@ -53,9 +53,11 @@ Smart Grocery List
 ### Misc
 - [ ] Add app icon
 - [ ] Add schema update logic
-- [ ] Combine all ShoppingList use cases into one
+- [x] Combine all ShoppingList use cases into one
 - [ ] Separate Views for iOS and macOS
 - [ ] Style the SwipeableProductView
+- [ ] Integration tests for ShoppingListViewModel
+  - Remove obsolete UnitTests
 
 ### UI tests
 - iOS
@@ -77,6 +79,6 @@ Smart Grocery List
 
 ## Test Strategy
 - The business logic should be covered by unit tests
-- Integration tests should be spanning from ViewModels to in memory storage
+- Integration tests should be spanning from ViewModels to in-memory storage
 - UI tests should be created for the main user interaction paths
 
