@@ -123,4 +123,25 @@ struct ShoppingListUseCasesTest {
         #expect(repo.get(byId: expectedUUID2)?.rank == 2)
         #expect(repo.get(byId: expectedUUID3)?.rank == 0)
     }
+    
+    @Test
+    func test_toggleProductChecked_should_invert_the_product_checked_state() {
+        // Arrange
+        let expectedUUID1 = UUID()
+        let expectedUUID2 = UUID()
+        let products = [
+            Product(id: expectedUUID1, name: "P1", rank: 0, checked: false),
+            Product(id: expectedUUID2, name: "P2", rank: 1, checked: true)
+        ]
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: products)
+        let sut: ShoppingListUseCases = ShoppingListUseCasesImpl(products: repo)
+        
+        // Act
+        sut.toggleProductChecked(of: expectedUUID1)
+        sut.toggleProductChecked(of: expectedUUID2)
+        
+        // Assert
+        #expect(repo.get(byId: expectedUUID1)?.checked == true)
+        #expect(repo.get(byId: expectedUUID2)?.checked == false)
+    }
 }

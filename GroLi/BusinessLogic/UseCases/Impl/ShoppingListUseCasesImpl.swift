@@ -40,4 +40,10 @@ struct ShoppingListUseCasesImpl: ShoppingListUseCases {
             }
         }
     }
+    
+    func toggleProductChecked(of id: UUID) {
+        if let product = products.get(byId: id) {
+            products.update(Product(id: product.id, name: product.name, rank: product.rank, checked: !product.checked))
+        }
+    }
 }

@@ -13,6 +13,7 @@ class ShoppingListUseCasesMock: ShoppingListUseCases {
     var listCalls: Int = 0
     var removeCalls: Int = 0
     var reorderCalls: Int = 0
+    var toggleCalls: Int = 0
     
     func addProduct(name: String) {
         addCalls += 1
@@ -29,5 +30,9 @@ class ShoppingListUseCasesMock: ShoppingListUseCases {
     
     func reorderProducts(byIds ids: [UUID]) {
         reorderCalls += 1
+    }
+    
+    func toggleProductChecked(of id: UUID) {
+        toggleCalls += 1
     }
 }

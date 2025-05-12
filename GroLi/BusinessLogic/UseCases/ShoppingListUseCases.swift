@@ -12,4 +12,5 @@ protocol ShoppingListUseCases {
     func addProduct(name: String)
     func removeProduct(withId id: UUID)
     func reorderProducts(byIds ids: [UUID])
+    func toggleProductChecked(of id: UUID)
 }

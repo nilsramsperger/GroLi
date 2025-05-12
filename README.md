@@ -37,7 +37,7 @@ Smart Grocery List
   - [x] Set item background for larger drag tap area
   
 ### Persist item checkbox
-- [ ] Create ToggleProductCheckedUseCase
+- [x] Create toggleProductChecked() in ShoppingListUseCase
   - test it
 - [ ] Listen to change of checkbox and trigger usecase
 
