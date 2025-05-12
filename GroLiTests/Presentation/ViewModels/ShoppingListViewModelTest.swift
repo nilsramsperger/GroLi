@@ -76,4 +76,18 @@ struct ShoppingListViewModelTest {
         // Assert
         #expect(shoppingListUseCases.reorderCalls == 1)
     }
+    
+    @Test()
+    func test_changing_the_checked_field_of_a_product_should_call_the_toggleProductChecked_method_of_the_use_case() {
+        // Arrange
+        let shoppingListUseCases = ShoppingListUseCasesMock()
+        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        sut.loadItems()
+        
+        // Act
+        sut.products = [Product(id: sut.products[0].id, name: sut.products[0].name, rank: sut.products[0].rank, checked: !sut.products[0].checked)]
+        
+        // Assert
+        #expect(shoppingListUseCases.toggleCalls == 1)
+    }
 }

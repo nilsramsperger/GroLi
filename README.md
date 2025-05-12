@@ -39,7 +39,7 @@ Smart Grocery List
 ### Persist item checkbox
 - [x] Create toggleProductChecked() in ShoppingListUseCase
   - test it
-- [ ] Listen to change of checkbox and trigger usecase
+- [x] Listen to change of checkbox and trigger usecase
 
 ### Security etc.
 - [ ] Add Validation for product name input
