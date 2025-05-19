@@ -15,7 +15,6 @@ Smart Grocery List
 - [ ] Add app icon
 - [ ] Add schema update logic
 - [x] Combine all ShoppingList use cases into one
-- [ ] Separate Views for iOS and macOS
 - [ ] Style the SwipeableProductView
 - [ ] Integration tests for ShoppingListViewModel
   - Remove obsolete UnitTests
