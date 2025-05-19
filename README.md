@@ -4,7 +4,7 @@ Smart Grocery List
 ## ToDo
 ### Security etc.
 - [x] Add BL validation for product name input
-- [ ] Add UI validation for product name input
+- [x] Add UI validation for product name input
 - [ ] Display errors from BL in UI
 
 ### Switch to CoreData and iCloudKit for storage
