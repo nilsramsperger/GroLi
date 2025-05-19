@@ -8,13 +8,18 @@
 import Foundation
 
 struct ShoppingListUseCasesImpl: ShoppingListUseCases {
+    let productNameMaxLength = 40
+    
     var products: ProductsRepository
     
     func listProducts() -> [Product] {
         return products.getAll().sorted { $0.rank < $1.rank }
     }
     
-    func addProduct(name: String) {
+    func addProduct(name: String) throws {
+        if(name.count > productNameMaxLength) {
+            throw ValidationError.stringTooLong
+        }
         let maxRank = products.getAll().max(by: { $0.rank < $1.rank })?.rank ?? 0
         let newProduct = Product(id: UUID(), name: name, rank: maxRank + 1, checked: false)
         products.add(newProduct)

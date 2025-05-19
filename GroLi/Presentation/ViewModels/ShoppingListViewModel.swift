@@ -35,8 +35,12 @@ class ShoppingListViewModel: ObservableObject {
     }
     
     func addItem(name: String) {
-        shoppingListUseCases.addProduct(name: name)
-        loadItems()
+        do {
+            try shoppingListUseCases.addProduct(name: name)
+            loadItems()
+        } catch {
+            //ToDo: Handle Error
+        }
     }
     
     func deleteItem(at index: Int) {

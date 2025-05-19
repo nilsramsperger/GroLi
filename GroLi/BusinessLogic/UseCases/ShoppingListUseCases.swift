@@ -9,7 +9,7 @@ import Foundation
 
 protocol ShoppingListUseCases {
     func listProducts() -> [Product]
-    func addProduct(name: String)
+    func addProduct(name: String) throws
     func removeProduct(withId id: UUID)
     func reorderProducts(byIds ids: [UUID])
     func toggleProductChecked(of id: UUID)

@@ -17,7 +17,11 @@ struct ShoppingListUseCasesTest {
         let sut: ShoppingListUseCases = ShoppingListUseCasesImpl(products: repo)
         
         // Act
-        sut.addProduct(name: "Test")
+        do {
+            try sut.addProduct(name: "Test")
+        } catch {
+            #expect(Bool(false))
+        }
         
         // Assert
         #expect(repo.getAll().count == 1)
@@ -35,13 +39,30 @@ struct ShoppingListUseCasesTest {
         let sut: ShoppingListUseCases = ShoppingListUseCasesImpl(products: repo)
         
         // Act
-        sut.addProduct(name: "Test")
+        do {
+            try sut.addProduct(name: "Test")
+        } catch {
+            #expect(Bool(false))
+        }
         
         // Assert
         #expect(repo.getAll()[3].id.uuidString.count == 36)
         #expect(repo.getAll()[3].name == "Test")
         #expect(repo.getAll()[3].checked == false)
         #expect(repo.getAll()[3].rank == 3)
+    }
+    
+    @Test()
+    func test_addProduct_should_throw_if_the_name_is_longer_then_40_characters() {
+        // Arrange
+        let textWith41Characters = String(repeating: "a", count: 41)
+        let repo = ProductsInMemoryRepositoryImpl(withProducts: [])
+        let sut: ShoppingListUseCases = ShoppingListUseCasesImpl(products: repo)
+        
+        // Act & Assert
+        #expect(throws: ValidationError.stringTooLong) {
+            try sut.addProduct(name: textWith41Characters)
+        }
     }
     
     @Test()
