@@ -44,3 +44,8 @@ Smart Grocery List
 - Integration tests should be spanning from ViewModels to in-memory storage
 - UI tests should be created for the main user interaction paths
 
+## Ideas for later milestones
+- [ ] Edit mode for products
+  - Substitute for the "Add product sheet"
+- [ ] Limit the number of products in the list
+- [ ] Limit the number of shops
