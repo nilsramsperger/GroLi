@@ -8,9 +8,9 @@
 import Foundation
 
 protocol ProductsRepository {
-    func getAll() -> [Product];
-    func get(byId id: UUID) -> Product?;
-    func add(_ product: Product) -> Void;
-    func remove(_ product: Product) -> Void;
-    func update(_ product: Product) -> Void;
+    func getAll() throws -> [Product];
+    func get(byId id: UUID) throws -> Product?;
+    func add(_ product: Product) throws -> Void;
+    func remove(_ product: Product) throws -> Void;
+    func update(_ product: Product) throws -> Void;
 }

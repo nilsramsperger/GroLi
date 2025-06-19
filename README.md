@@ -8,8 +8,8 @@ Smart Grocery List
 - [ ] Display errors from BL in UI
 
 ### Switch to CoreData and iCloudKit for storage
-- [ ] Implement a CoreData based repository
-  - Intgrate shema version fields into each record
+- [x] Implement a CoreData based repository
+- [ ] Integrate schema version fields into each record
 - [ ] Integrate iCloud private database
 - [ ] Integrate iCloud shared database
 
@@ -47,5 +47,6 @@ Smart Grocery List
 ## Ideas for later milestones
 - [ ] Edit mode for products
   - Substitute for the "Add product sheet"
+  - Adding must be indepenent of the edit mode, because it is not clear in which list the product will end up.
 - [ ] Limit the number of products in the list
 - [ ] Limit the number of shops

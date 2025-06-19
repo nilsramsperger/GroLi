@@ -8,7 +8,7 @@
 import Foundation
 
 class ProductsInMemoryRepositoryImpl: ProductsRepository {
-    var products: [Product] = []
+    private var products: [Product] = []
     
     init(withProducts products: [Product]) {
         self.products = products

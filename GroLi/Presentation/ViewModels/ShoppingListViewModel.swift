@@ -23,7 +23,11 @@ class ShoppingListViewModel: ObservableObject {
                 for newProduct in newValue {
                     if let existingProduct = self.products.first(where: { $0.id == newProduct.id }),
                        existingProduct.checked != newProduct.checked {
-                        self.shoppingListUseCases.toggleProductChecked(of: newProduct.id)
+                        do {
+                            try self.shoppingListUseCases.toggleProductChecked(of: newProduct.id)
+                        } catch {
+                            
+                        }
                     }
                 }
             })
@@ -31,7 +35,11 @@ class ShoppingListViewModel: ObservableObject {
     }
     
     func loadItems() {
-        products = shoppingListUseCases.listProducts()
+        do {
+            products = try shoppingListUseCases.listProducts()
+        } catch {
+            
+        }
     }
     
     func addItem(name: String) {
@@ -44,14 +52,22 @@ class ShoppingListViewModel: ObservableObject {
     }
     
     func deleteItem(at index: Int) {
-        if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
-            shoppingListUseCases.removeProduct(withId: idToDelete)
+        do {
+            if let idToDelete = products.indices.contains(index) ? products[index].id : nil {
+                try shoppingListUseCases.removeProduct(withId: idToDelete)
+            }
+            loadItems()
+        } catch {
+            
         }
-        loadItems()
     }
     
     func reorderItems() {
-        shoppingListUseCases.reorderProducts(byIds: products.map { $0.id })
-        loadItems()
+        do {
+            try shoppingListUseCases.reorderProducts(byIds: products.map { $0.id })
+            loadItems()
+        } catch {
+            
+        }
     }
 }
