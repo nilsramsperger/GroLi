@@ -14,7 +14,7 @@ Smart Grocery List
 - [ ] Integrate iCloud shared database
 
 ### Misc
-- [ ] Add app icon
+- [x] Add app icon
 - [ ] Add schema update logic
 - [x] Combine all ShoppingList use cases into one
 - [ ] Style the SwipeableProductView
