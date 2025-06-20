@@ -7,8 +7,8 @@
 import CoreData
 
 class DataController: ObservableObject {
-    lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "GroLi")
+    lazy var container: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: "GroLi")
         let description = container.persistentStoreDescriptions.first
         description?.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
         description?.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)

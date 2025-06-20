@@ -12,7 +12,7 @@ Smart Grocery List
 ### Switch to CoreData and iCloudKit for storage
 - [x] Implement a CoreData based repository
 - [x] Integrate schema version fields into each record
-- [ ] Integrate iCloud private database
+- [x] Integrate iCloud private database
 - [ ] Integrate iCloud shared database
 
 ### Misc

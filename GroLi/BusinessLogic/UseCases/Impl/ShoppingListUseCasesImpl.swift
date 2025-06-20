@@ -9,31 +9,36 @@ import Foundation
 import os
 
 struct ShoppingListUseCasesImpl: ShoppingListUseCases {
-    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "ShoppingListUseCasesImpl")
-    
+    private static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: "ShoppingListUseCasesImpl"
+    )
+
     private let productNameMaxLength = 40
-    
+
     var products: ProductsRepository
 
     func listProducts() throws -> [Product] {
         do {
             return try products.getAll().sorted { $0.rank < $1.rank }
         } catch {
-            Self.logger.fault("Action failed: \(error.localizedDescription, privacy: .public)")
+            Self.logger.fault(
+                "Action failed: \(error.localizedDescription, privacy: .public)"
+            )
             throw DataError.persistenceFailed
         }
     }
 
     func addProduct(name: String) throws {
+
+        if name.isEmpty {
+            return
+        }
+
+        if name.count > productNameMaxLength {
+            throw ValidationError.stringTooLong
+        }
         do {
-            if name.isEmpty {
-                return
-            }
-
-            if name.count > productNameMaxLength {
-                throw ValidationError.stringTooLong
-            }
-
             let maxRank =
                 try products.getAll().max(by: { $0.rank < $1.rank })?.rank ?? 0
             let newProduct = Product(
@@ -44,7 +49,9 @@ struct ShoppingListUseCasesImpl: ShoppingListUseCases {
             )
             try products.add(newProduct)
         } catch {
-            Self.logger.fault("Action failed: \(error.localizedDescription, privacy: .public)")
+            Self.logger.fault(
+                "Action failed: \(error.localizedDescription, privacy: .public)"
+            )
             throw DataError.persistenceFailed
         }
     }
@@ -67,7 +74,9 @@ struct ShoppingListUseCasesImpl: ShoppingListUseCases {
                     .forEach { try products.update($0) }
             }
         } catch {
-            Self.logger.fault("Action failed: \(error.localizedDescription, privacy: .public)")
+            Self.logger.fault(
+                "Action failed: \(error.localizedDescription, privacy: .public)"
+            )
             throw DataError.persistenceFailed
         }
     }
@@ -89,7 +98,9 @@ struct ShoppingListUseCasesImpl: ShoppingListUseCases {
                 }
             }
         } catch {
-            Self.logger.fault("Action failed: \(error.localizedDescription, privacy: .public)")
+            Self.logger.fault(
+                "Action failed: \(error.localizedDescription, privacy: .public)"
+            )
             throw DataError.persistenceFailed
         }
     }
@@ -107,7 +118,9 @@ struct ShoppingListUseCasesImpl: ShoppingListUseCases {
                 )
             }
         } catch {
-            Self.logger.fault("Action failed: \(error.localizedDescription, privacy: .public)")
+            Self.logger.fault(
+                "Action failed: \(error.localizedDescription, privacy: .public)"
+            )
             throw DataError.persistenceFailed
         }
     }
