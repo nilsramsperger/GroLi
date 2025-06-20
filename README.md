@@ -6,16 +6,20 @@ Smart Grocery List
 - [x] Add BL validation for product name input
 - [x] Add UI validation for product name input
 - [ ] Display errors from BL in UI
+  - Global blocking display of message 
+  - No usage of app allowed
 
 ### Switch to CoreData and iCloudKit for storage
 - [x] Implement a CoreData based repository
-- [ ] Integrate schema version fields into each record
+- [x] Integrate schema version fields into each record
 - [ ] Integrate iCloud private database
 - [ ] Integrate iCloud shared database
 
 ### Misc
 - [x] Add app icon
 - [ ] Add schema update logic
+  - Record version above App -> Ask user for update
+  - Record version below App -> Update record
 - [x] Combine all ShoppingList use cases into one
 - [ ] Style the SwipeableProductView
 - [ ] Integration tests for ShoppingListViewModel

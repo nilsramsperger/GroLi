@@ -52,6 +52,7 @@ struct ProductsCoreDataRepositoryImpl: ProductsRepository {
             newProduct.name = product.name
             newProduct.rank = Int16(product.rank)
             newProduct.checked = product.checked
+            newProduct.schemaVersion = Constants.Data.schemaVersion
             try context.save()
         } catch {
             context.rollback()
