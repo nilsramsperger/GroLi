@@ -24,6 +24,7 @@ struct ShoppingListIOSView: View {
     @State private var swipedIndex: Int? = nil
     
     @EnvironmentObject private var viewModel: ShoppingListViewModel
+    @EnvironmentObject private var globalViewModel: GlobalViewModel
     
     var body: some View {
         ZStack() {
@@ -139,8 +140,9 @@ struct DragRelocateDelegate: DropDelegate {
 
 struct ShoppingListViewPreviewData: PreviewModifier {
     static func makeSharedContext() -> ShoppingListViewModel {
+        let globalViewModel: GlobalViewModel = GlobalViewModel()
         let factory: ShoppingListViewModelFactory = ShoppingListPreViewModelFactoryImpl()
-        let viewModel: ShoppingListViewModel = factory.create()
+        let viewModel: ShoppingListViewModel = factory.create(globalViewModel: globalViewModel)
         viewModel.loadItems()
         return viewModel
     }

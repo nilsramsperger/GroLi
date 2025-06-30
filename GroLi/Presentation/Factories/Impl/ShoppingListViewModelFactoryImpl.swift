@@ -8,10 +8,10 @@
 import Foundation
 
 struct ShoppingListViewModelFactoryImpl: ShoppingListViewModelFactory {
-    func create() -> ShoppingListViewModel {
+    func create(globalViewModel: GlobalViewModel) -> ShoppingListViewModel {
         let dataController = DataController()
         let products: ProductsRepository = ProductsCoreDataRepositoryImpl(context: dataController.container.viewContext)
         let shoppingListUseCases: ShoppingListUseCases = ShoppingListUseCasesImpl(products: products)
-        return ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        return ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases, globalViewModel: globalViewModel)
     }
 }

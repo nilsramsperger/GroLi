@@ -14,9 +14,11 @@ class ShoppingListViewModel: ObservableObject {
     @Published var products: [Product] = []
     
     private var cancellables = Set<AnyCancellable>()
+    private var globalViewModel: GlobalViewModel
     
-    init(shoppingListUseCases: ShoppingListUseCases) {
+    init(shoppingListUseCases: ShoppingListUseCases, globalViewModel: GlobalViewModel) {
         self.shoppingListUseCases = shoppingListUseCases
+        self.globalViewModel = globalViewModel
         $products
             .sink(receiveValue: { [weak self] newValue in
                 guard let self = self else { return }

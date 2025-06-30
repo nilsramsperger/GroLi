@@ -9,18 +9,22 @@ import SwiftUI
 
 @main
 struct GroLiApp: App {
+    let globalViewModel: GlobalViewModel
     let shoppingListViewModelFactory: ShoppingListViewModelFactory
     let shoppingListViewModel: ShoppingListViewModel
 
     var body: some Scene {
         WindowGroup {
-            NavigationManagerView().environmentObject(shoppingListViewModel)
+            NavigationManagerView()
+                .environmentObject(shoppingListViewModel)
+                .environmentObject(globalViewModel)
         }
     }
     
     init() {
+        globalViewModel = GlobalViewModel()
         shoppingListViewModelFactory = ShoppingListViewModelFactoryImpl()
-        shoppingListViewModel = shoppingListViewModelFactory.create()
+        shoppingListViewModel = shoppingListViewModelFactory.create(globalViewModel: globalViewModel)
         shoppingListViewModel.loadItems()
     }
 }

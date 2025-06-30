@@ -14,7 +14,7 @@ struct ShoppingListViewModelTest {
     func test_loadItems_should_call_list_data() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         
         // Act
         sut.loadItems()
@@ -27,7 +27,7 @@ struct ShoppingListViewModelTest {
     func test_loadItems_should_put_data_in_local_varable() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         
         // Act
         sut.loadItems()
@@ -40,7 +40,7 @@ struct ShoppingListViewModelTest {
     func test_addItem_should_call_add_product_use_case() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         
         // Act
         sut.addItem(name: "Test")
@@ -53,7 +53,7 @@ struct ShoppingListViewModelTest {
     func test_deleteItem_should_call_remove_product_use_case() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         sut.loadItems()
         
         // Act
@@ -67,7 +67,7 @@ struct ShoppingListViewModelTest {
     func test_reorderItems_should_call_reorder_products_use_case() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         sut.loadItems()
         
         // Act
@@ -81,7 +81,7 @@ struct ShoppingListViewModelTest {
     func test_changing_the_checked_field_of_a_product_should_call_the_toggleProductChecked_method_of_the_use_case() {
         // Arrange
         let shoppingListUseCases = ShoppingListUseCasesMock()
-        let sut = ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases)
+        let sut = createViewModel(shoppingListUseCases: shoppingListUseCases)
         sut.loadItems()
         
         // Act
@@ -89,5 +89,10 @@ struct ShoppingListViewModelTest {
         
         // Assert
         #expect(shoppingListUseCases.toggleCalls == 1)
+    }
+    
+    func createViewModel(shoppingListUseCases: ShoppingListUseCases) -> ShoppingListViewModel {
+        let globalViewModel = GlobalViewModel()
+        return ShoppingListViewModel(shoppingListUseCases: shoppingListUseCases, globalViewModel: globalViewModel)
     }
 }

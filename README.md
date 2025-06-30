@@ -6,8 +6,10 @@ Smart Grocery List
 - [x] Add BL validation for product name input
 - [x] Add UI validation for product name input
 - [ ] Display errors from BL in UI
-  - Global blocking display of message 
-  - No usage of app allowed
+  - [x] Add GlobalViewModel for messages
+  - [x] Display nonDismessableMessages
+  - [ ] Handle Errors by setting nonDismessableMessages
+  - [ ] Test error handling
 
 ### Switch to CoreData and iCloudKit for storage
 - [x] Implement a CoreData based repository

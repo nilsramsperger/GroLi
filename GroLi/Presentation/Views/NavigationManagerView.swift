@@ -12,6 +12,8 @@ struct NavigationManagerView: View {
     @State private var selection: String? = "misc"
     @State private var sideBarVisibility: NavigationSplitViewVisibility = .doubleColumn
     
+    @EnvironmentObject private var globalViewModel: GlobalViewModel
+    
     var body: some View {
         NavigationSplitView(columnVisibility: $sideBarVisibility) {
             HStack() {
@@ -35,7 +37,11 @@ struct NavigationManagerView: View {
             } else {
                 Text("Unknown")
             }
+        }.fullScreenCover(isPresented: .constant(!globalViewModel.nonDismissableMessage.isEmpty)) {
+            NonDismissableMessageView()
         }
+            
+            
     }
 }
 

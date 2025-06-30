@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ShoppingListViewModelFactory {
-    func create() -> ShoppingListViewModel
+    func create(globalViewModel: GlobalViewModel) -> ShoppingListViewModel
 }
