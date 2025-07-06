@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Key" : {
+      "comment" : "Error message for string too long",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der eingegebene Text ist zu lang!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The entered text is too long!"
+          }
+        }
+      }
+    },
     "MiscListHeader" : {
       "comment" : "Headline of the list for items that belong to no shop",
       "extractionState" : "manual",
@@ -33,6 +51,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New Item"
+          }
+        }
+      }
+    },
+    "PersistenceErrorMessage" : {
+      "comment" : "Error message to show on persistence errors",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einige Daten kann aktuell nicht zugegriffen werden. Bitte versuche es später erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some data is currently not accessible. Please try again later."
           }
         }
       }
@@ -82,6 +118,9 @@
           }
         }
       }
+    },
+    "ValidationErrorStringTooLong" : {
+      "comment" : "Error message for string too long"
     },
     "WhatToBuy" : {
       "comment" : "Placeholder for a new shopping list entry's name",

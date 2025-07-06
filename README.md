@@ -8,7 +8,8 @@ Smart Grocery List
 - [ ] Display errors from BL in UI
   - [x] Add GlobalViewModel for messages
   - [x] Display nonDismessableMessages
-  - [ ] Handle Errors by setting nonDismessableMessages
+  - [x] Handle Data Errors by setting nonDismessableMessages
+  - [ ] Implement dismissable messages
   - [ ] Test error handling
 
 ### Switch to CoreData and iCloudKit for storage
@@ -24,8 +25,12 @@ Smart Grocery List
   - Record version below App -> Update record
 - [x] Combine all ShoppingList use cases into one
 - [ ] Style the SwipeableProductView
+  - The red delete button should not be visible when the product is not swiped
+  - The Icon should be white on red background
+  - The swiped state should be reset when the user taps away
 - [ ] Integration tests for ShoppingListViewModel
   - Remove obsolete UnitTests
+- [ ] Integration tests for GlobalViewModel
 
 ### UI tests
 - iOS
